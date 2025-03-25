@@ -15,17 +15,18 @@ body {
     justify-content: space-between;
     align-items: center;
     background: #333;
-    padding: 10px 20px;
 }
 
 /* Main menu */
 .nav-menu {
     list-style: none;
     display: flex;
+    width:100%;
 }
 
 .nav-menu li {
     position: relative;
+    padding: 10px 20px;
     border: blueviolet solid 1px;
 }
 
@@ -34,6 +35,13 @@ body {
     color: white;
     padding: 10px 15px;
     display: block;
+}
+
+a {
+    transition: .4s ease;
+}
+a:hover {
+    color: red;
 }
 
 /* Dropdown menu */
@@ -49,6 +57,7 @@ body {
 
 .dropdown-menu li {
     width: 100%;
+    list-style: none;
 }
 
 .dropdown-menu a {
@@ -59,36 +68,51 @@ body {
 /* Show dropdown on hover (for desktop) */
 .dropdown:hover .dropdown-menu {
     display: block;
+    border: red solid 1px;
 }
 
-/* Dropdown submenu */
+.dropdown-submenu .dropbtn2 {
+    color: #444;
+}
+/* Positioning the second-level submenu (desktop) */
+.dropdown-submenu {
+    position: relative; /* Ensures submenu is positioned relative to this */
+    background-color: greenyellow ;
+    z-index: 1000
+}
 
-.dropdown-menu2 {
-    list-style: none;
+.submenu {
     position: absolute;
-    top: 100%;
-    left: 0;
-    background: #444;
-    display: none;
-    min-width: 150px;
+    left: 100%; /* Moves submenu closer */ /* Pushes it to the right of the parent */
+    top: 0;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    background: #333; /* Ensure visibility */
+    transition: transform 0.4s ease, opacity 0.4s ease, max-width 0.4s ease;
+    transform: translateX(-20px); /* Starts slightly behind the parent */
+    white-space: nowrap; /* Prevents wrapping */
+    z-index:-1;
 }
 
-.dropdown-menu2 li {
+.submenu li {
     width: 100%;
 }
 
-.dropdown-menu2 a {
+.submenu a {
     padding: 10px;
     display: block;
 }
 
-/* Show dropdown on hover (for desktop) */
-.dropdown2:hover .dropdown-menu2 {
-    display: block;
+
+
+/* Show submenu on hover for desktop */
+.dropdown-submenu:hover .submenu {
+    max-width: 200px;
+    opacity: 1;
+    transform: translateX(0); /* Moves into place smoothly */
 }
 
-
-/* Mobile menu toggle button */
 .menu-toggle {
     display: none;
     background: none;
@@ -100,6 +124,10 @@ body {
 
 /* Responsive styling */
 @media (max-width: 768px) {
+
+    .navbar {
+        padding: 10px 20px;
+    }
     .nav-menu {
         display: none;
         flex-direction: column;
@@ -122,6 +150,15 @@ body {
     .dropdown.active .dropdown-menu {
         display: block;
     }
+
+.submenu {
+    position: static;
+    display: none;
+}
+
+.dropdown-submenu.active .submenu {
+    display: block; /* Opens submenu on click */
+}
 
     .menu-toggle {
         display: block;

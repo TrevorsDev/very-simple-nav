@@ -22,39 +22,47 @@ body {
     list-style: none;
     display: flex;
     width:100%;
-    border: green solid 1px;
 }
 
 .nav-menu li {
     position: relative;
-    border: blueviolet solid 1px;
 }
 
 .nav-menu a {
     text-decoration: none;
     color: white;
-    padding: 10px 20px;
+    padding: 20px 30px;
     display: block;
+    width: 100%;
 }
 
 a {
     transition: .4s ease;
-    border: red solid 1px;
+    /* border: red solid 1px; */
 }
-a:hover {
+a:hover,
+.dropdown:hover .dropbtn,
+.dropdown-submenu:hover .dropbtn2 {
     color: red;
 }
 
 /* Dropdown menu */
+.dropdown .dropbtn,
+.dropdown .dropbtn2  {
+    color: greenyellow ;
+    font-weight: 600;
+}
+
 .dropdown-menu {
-    list-style: none;
     position: absolute;
     top: 100%;
-    left: 0;
-    background: #444;
-    display: none;
-    min-width: 150px;
-    border: blueviolet solid 1px;
+    max-height: 0;
+    min-width: 100%;
+    opacity: 0;
+    background: #444; /* Ensure visibility */
+    transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
+    white-space: nowrap; /* Prevents wrapping */
+    /* border: orange 1px solid; */
 }
 
 .dropdown-menu li {
@@ -63,24 +71,24 @@ a:hover {
 }
 
 .dropdown-menu a {
-    padding: 10px;
     display: block;
 }
 
 /* Show dropdown on hover (for desktop) */
 .dropdown:hover .dropdown-menu {
-    display: block;
-    border: red solid 1px;
+    top:100%;
+    max-height: 300px;
+    min-width: 100%;
+    opacity: 1;
+    transform: translateY(0); /* Moves into place smoothly */
+
+   
 }
 
-.dropdown-submenu .dropbtn2 {
-    color: #444;
-}
 /* Positioning the second-level submenu (desktop) */
 .dropdown-submenu {
     position: relative; /* Ensures submenu is positioned relative to this */
-    background-color: greenyellow ;
-    z-index: 1000
+    /* border: lime 1px solid; */
 }
 
 .submenu {
@@ -89,12 +97,12 @@ a:hover {
     top: 0;
     max-width: 0;
     opacity: 0;
-    overflow: hidden;
-    background: #333; /* Ensure visibility */
+    /* overflow: hidden; */
+    background: #555; /* Ensure visibility */
     transition: transform 0.4s ease, opacity 0.4s ease, max-width 0.4s ease;
     transform: translateX(0); /* Starts slightly behind the parent */
     white-space: nowrap; /* Prevents wrapping */
-
+    /* border: yellow 1px solid; */
 }
 
 .submenu li {
@@ -102,7 +110,7 @@ a:hover {
 }
 
 .submenu a {
-    padding: 10px;
+    padding: 20px 30px; 
     display: block;
 }
 
@@ -134,62 +142,59 @@ a:hover {
         display: flex;
         flex-direction: column;
         align-items: center;
-        min-width: 100%;
         position: absolute;
-        top: 3em;
-        left: 0;
-        transition: display .3s ease; 
         top: 100%;
-        width: 100%;
+        width: 100%; /* Ensure full width */
         max-height: 0;
         opacity: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease, opacity 0.3s ease;
+        transition: max-height 1s ease-in-out, opacity 0.3s ease;
         background: #333;
     }
 
     .nav-menu.show {
-        max-height: 500px; /* Adjust as needed */
+        max-height: 1500px; /* Adjust as needed */
         opacity: 1;
         overflow: visible
     }
 
     .nav-menu li {
-        display: flex;
-        justify-content: center;
-        min-width: 100%
+        width: 100%; /* Ensure full clickable width */
+        text-align: center; /* Align the content inside */
+        padding: 5px 0; /* Adjust padding for better clickability */
     }
-.dropdown {
-    display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-}
+
+    .dropdown {
+        width: auto;
+        overflow: hidden;
+    }
 
     .dropdown-menu {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         width: 100%;
+        text-align: center;
         position: static;
         display: none;
     }
 
     .dropdown.active .dropdown-menu {
         display: block;
+        border-bottom: 1px solid #555; /* Optional: Adds dividers */
+    }
+
+    .dropdown-submenu {
+        display: flex;
+        flex-direction: column;
+
     }
 
     .submenu {
         position: static;
-        bottom: -100%; /* Moves submenu closer */ /* Pushes it to the right of the parent */
         top: 0;
         max-height: 0;
         min-width: 100%;
         opacity: 0;
-        overflow: hidden;
         background: #555; /* Ensure visibility */
-        transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
-        transform: translateY(0); /* Starts slightly behind the parent */
+        transition: opacity 0.4s ease, max-height 0.4s ease;
         white-space: nowrap; /* Prevents wrapping */    
     }
 
@@ -204,10 +209,8 @@ a:hover {
     
     /* Show submenu on hover for desktop */
     .dropdown-submenu:hover .submenu {
-        
         max-height: 200px;
         opacity: 1;
-        transform: translateY(0); /* Moves into place smoothly */
     }
    
 

@@ -74,17 +74,6 @@ a:hover,
     display: block;
 }
 
-/* Show dropdown on hover (for desktop) */
-.dropdown:hover .dropdown-menu {
-    top:100%;
-    max-height: 300px;
-    min-width: 100%;
-    opacity: 1;
-    transform: translateY(0); /* Moves into place smoothly */
-
-   
-}
-
 /* Positioning the second-level submenu (desktop) */
 .dropdown-submenu {
     position: relative; /* Ensures submenu is positioned relative to this */
@@ -114,13 +103,6 @@ a:hover,
     display: block;
 }
 
-/* Show submenu on hover for desktop */
-.dropdown-submenu:hover .submenu {
-    max-width: 200px;
-    opacity: 1;
-    transform: translateX(0); /* Moves into place smoothly */
-}
-
 .menu-toggle {
     display: none;
     background: none;
@@ -131,7 +113,28 @@ a:hover,
     padding: 10px 20px;
 }
 
-/* Responsive styling */
+@media (min-width: 769px) {
+/* Hover mode for menu and submenu, desktop view  */
+
+
+    /* Show dropdown on hover (for desktop) */
+    .dropdown:hover .dropdown-menu {
+        top:100%;
+        max-height: 300px;
+        min-width: 100%;
+        opacity: 1;
+        transform: translateY(0); /* Moves into place smoothly */
+    }
+
+    /* Show submenu on hover for desktop */
+    .dropdown-submenu:hover .submenu {
+        max-width: 200px;
+        opacity: 1;
+        transform: translateX(0); /* Moves into place smoothly */
+    }
+}
+
+/* Responsive styling for mobile*/
 @media (max-width: 768px) {
 
     .navbar {
@@ -178,7 +181,10 @@ a:hover,
 
     .dropdown.active .dropdown-menu {
         display: block;
-        border-bottom: 1px solid #555; /* Optional: Adds dividers */
+        max-height: 300px; /* Same height as hover */
+        opacity: 1;
+        transform: translateY(0);
+        transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
     }
 
     .dropdown-submenu {
@@ -207,13 +213,15 @@ a:hover,
         display: block;
     }
     
-    /* Show submenu on hover for desktop */
-    .dropdown-submenu:hover .submenu {
-        max-height: 200px;
-        opacity: 1;
+    /* Show submenu when active class is added for mobile */
+    .dropdown-submenu.activeSub .submenu {
+    display: block; /* Ensure it appears */
+    max-height: 200px;
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
     }
    
-
     .menu-toggle {
         display: block;
     }

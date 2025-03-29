@@ -8,6 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
     menuToggle.addEventListener("click", function () {
         console.log("Menu button clicked!"); // Debugging
         navMenu.classList.toggle("show");
+
+        // If menu is being closed, also close dropdown and submenus
+        if (!navMenu.classList.contains("show")) {
+            if (dropdown) {
+                dropdown.classList.remove("active");
+            }
+            submenus.forEach(submenu => submenu.classList.remove("activeSub"));
+        }
     });
 
     // Toggle dropdown menu on mobile
@@ -36,5 +44,5 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             submenus.forEach(submenu => submenu.classList.remove("activeSub"));
         }
-    })
+    });
 });

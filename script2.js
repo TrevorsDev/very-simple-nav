@@ -31,7 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("click", function (event) {
         if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
             navMenu.classList.remove("show");
-            dropdown.forEach(dropdown => dropdown.classList.remove("active"));
+            if (dropdown) {
+                dropdown.classList.remove("active"); // Fix: No .forEach() needed
+            }
             submenus.forEach(submenu => submenu.classList.remove("activeSub"));
         }
     })

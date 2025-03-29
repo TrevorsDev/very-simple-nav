@@ -169,22 +169,22 @@ a:hover,
 
     .dropdown {
         width: auto;
-        overflow: hidden;
+        overflow: hidden; /* Adding this property ensures a smooth rollout of the dropdown-menu, as the .dropdwon is forced to "stay hidden" UNTIL the nav-menu finishes its animation */
     }
 
     .dropdown-menu {
         width: 100%;
         text-align: center;
         position: static;
-        display: none;
+        max-height: 0; /* Start hidden */
+        opacity: 0;
+        overflow: hidden; /* Adding this property ensures a smooth rollout of the submenu*/
+        transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
     }
 
     .dropdown.active .dropdown-menu {
-        display: block;
-        max-height: 300px; /* Same height as hover */
+        max-height: 300px; /* Adjust as needed */
         opacity: 1;
-        transform: translateY(0);
-        transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
     }
 
     .dropdown-submenu {

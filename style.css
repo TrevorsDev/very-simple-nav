@@ -21,7 +21,7 @@ body {
 .nav-menu {
     list-style: none;
     display: flex;
-    width:100%;
+    width: 100%;
 }
 
 .nav-menu li {
@@ -40,6 +40,7 @@ a {
     transition: .4s ease;
     /* border: red solid 1px; */
 }
+
 a:hover,
 .dropdown:hover .dropbtn,
 .dropdown-submenu:hover .dropbtn2 {
@@ -48,20 +49,23 @@ a:hover,
 
 /* Dropdown menu */
 .dropdown .dropbtn,
-.dropdown .dropbtn2  {
-    color: greenyellow ;
+.dropdown .dropbtn2 {
+    color: greenyellow;
     font-weight: 600;
 }
 
 .dropdown-menu {
     position: absolute;
     top: 100%;
+    left: 0;
     max-height: 0;
     min-width: 100%;
     opacity: 0;
-    background: #444; /* Ensure visibility */
+    background: #444;
+    /* Ensure visibility */
     transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
-    white-space: nowrap; /* Prevents wrapping */
+    white-space: nowrap;
+    /* Prevents wrapping */
     /* border: orange 1px solid; */
 }
 
@@ -76,21 +80,27 @@ a:hover,
 
 /* Positioning the second-level submenu (desktop) */
 .dropdown-submenu {
-    position: relative; /* Ensures submenu is positioned relative to this */
+    position: relative;
+    /* Ensures submenu is positioned relative to this */
     /* border: lime 1px solid; */
 }
 
 .submenu {
     position: absolute;
-    left: 100%; /* Moves submenu closer */ /* Pushes it to the right of the parent */
+    left: 100%;
+    /* Moves submenu closer */
+    /* Pushes it to the right of the parent */
     top: 0;
     max-width: 0;
     opacity: 0;
     /* overflow: hidden; */
-    background: #555; /* Ensure visibility */
+    background: #555;
+    /* Ensure visibility */
     transition: transform 0.4s ease, opacity 0.4s ease, max-width 0.4s ease;
-    transform: translateX(0); /* Starts slightly behind the parent */
-    white-space: nowrap; /* Prevents wrapping */
+    transform: translateX(0);
+    /* Starts slightly behind the parent */
+    white-space: nowrap;
+    /* Prevents wrapping */
     /* border: yellow 1px solid; */
 }
 
@@ -99,7 +109,7 @@ a:hover,
 }
 
 .submenu a {
-    padding: 20px 30px; 
+    padding: 20px 30px;
     display: block;
 }
 
@@ -114,23 +124,31 @@ a:hover,
 }
 
 @media (min-width: 769px) {
-/* Hover mode for menu and submenu, desktop view  */
+    /* Hover mode for menu and submenu, desktop view  */
 
+    .dropdown-menu {
+        visibility: hidden;
+        /*  Makes the dropdown menu invisible but still occupies space in the layout. */
+    }
 
     /* Show dropdown on hover (for desktop) */
     .dropdown:hover .dropdown-menu {
-        top:100%;
+        top: 100%;
         max-height: 300px;
         min-width: 100%;
         opacity: 1;
-        transform: translateY(0); /* Moves into place smoothly */
+        visibility: visible;
+        /* Make it visible only when hovering */
+        transform: translateY(0);
+        /* Moves into place smoothly */
     }
 
     /* Show submenu on hover for desktop */
     .dropdown-submenu:hover .submenu {
         max-width: 200px;
         opacity: 1;
-        transform: translateX(0); /* Moves into place smoothly */
+        transform: translateX(0);
+        /* Moves into place smoothly */
     }
 }
 
@@ -141,13 +159,15 @@ a:hover,
         position: relative;
         /*  */
     }
+
     .nav-menu {
         display: flex;
         flex-direction: column;
         align-items: center;
         position: absolute;
         top: 100%;
-        width: 100%; /* Ensure full width */
+        width: 100%;
+        /* Ensure full width */
         max-height: 0;
         opacity: 0;
         overflow: hidden;
@@ -156,34 +176,42 @@ a:hover,
     }
 
     .nav-menu.show {
-        max-height: 1500px; /* Adjust as needed */
+        max-height: 1500px;
+        /* Adjust as needed */
         opacity: 1;
         overflow: visible
     }
 
     .nav-menu li {
-        width: 100%; /* Ensure full clickable width */
-        text-align: center; /* Align the content inside */
-        padding: 5px 0; /* Adjust padding for better clickability */
+        width: 100%;
+        /* Ensure full clickable width */
+        text-align: center;
+        /* Align the content inside */
+        padding: 5px 0;
+        /* Adjust padding for better clickability */
     }
 
     .dropdown {
         width: auto;
-        overflow: hidden; /* Adding this property ensures a smooth rollout of the dropdown-menu, as the .dropdwon is forced to "stay hidden" UNTIL the nav-menu finishes its animation */
+        overflow: hidden;
+        /* Adding this property ensures a smooth rollout of the dropdown-menu, as the .dropdwon is forced to "stay hidden" UNTIL the nav-menu finishes its animation */
     }
 
     .dropdown-menu {
         width: 100%;
         text-align: center;
         position: static;
-        max-height: 0; /* Start hidden */
+        max-height: 0;
+        /* Start hidden */
         opacity: 0;
-        overflow: hidden; /* Adding this property ensures a smooth rollout of the submenu*/
+        overflow: hidden;
+        /* Adding this property ensures a smooth rollout of the submenu*/
         transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
     }
 
     .dropdown.active .dropdown-menu {
-        max-height: 300px; /* Adjust as needed */
+        max-height: 300px;
+        /* Adjust as needed */
         opacity: 1;
     }
 
@@ -199,29 +227,32 @@ a:hover,
         max-height: 0;
         min-width: 100%;
         opacity: 0;
-        background: #555; /* Ensure visibility */
+        background: #555;
+        /* Ensure visibility */
         transition: opacity 0.4s ease, max-height 0.4s ease;
-        white-space: nowrap; /* Prevents wrapping */    
+        white-space: nowrap;
+        /* Prevents wrapping */
     }
 
     .submenu li {
         width: 100%;
     }
-    
+
     .submenu a {
         padding: 10px;
         display: block;
     }
-    
+
     /* Show submenu when active class is added for mobile */
     .dropdown-submenu.activeSub .submenu {
-    display: block; /* Ensure it appears */
-    max-height: 200px;
-    opacity: 1;
-    transform: translateX(0);
-    transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
+        display: block;
+        /* Ensure it appears */
+        max-height: 200px;
+        opacity: 1;
+        transform: translateX(0);
+        transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
     }
-   
+
     .menu-toggle {
         display: block;
     }
